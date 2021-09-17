@@ -1,6 +1,5 @@
 package com.bootcamp;
 
-
 public class Main {
 
   public static void main(String[] args) {
@@ -42,5 +41,6 @@ public class Main {
     double result = ga.dersNotOrtalamasıBulma();
     System.out.println("Sonuc :" +result);
     */
+
   }
 }
