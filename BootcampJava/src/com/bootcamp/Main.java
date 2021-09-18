@@ -42,5 +42,6 @@ public class Main {
     System.out.println("Sonuc :" +result);
     */
 
+
   }
 }
