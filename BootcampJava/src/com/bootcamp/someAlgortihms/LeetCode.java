@@ -1,5 +1,9 @@
 package com.bootcamp.someAlgortihms;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class LeetCode {
 
   public static int searchInsert(int[] arr, int target) {
@@ -69,7 +73,97 @@ public class LeetCode {
   }
 
   public void merge(int[] A, int m, int[] B, int n) {
-    while (n > 0) A[m + n - 1] = (m == 0 || B[n - 1] > A[m - 1]) ? B[--n] : A[--m];
+
+    int p1 = m - 1, p2 = n - 1, i = m + n - 1;
+    while (p2 >= 0) {
+      if (p1 >= 0 && A[p1] > B[p2]) {
+        A[i--] = A[p1--];
+      } else {
+        A[i--] = B[p2--];
+      }
+    }
+  }
+
+  public static List<Integer> getRow(int rowIndex) {
+    List<Integer> list = new ArrayList<>();
+    if (rowIndex < 0)
+      return list;
+
+    for (int i = 0; i < rowIndex + 1; i++) {
+      list.add(0, 1);
+      for (int j = 1; j < list.size() - 1; j++) {
+        list.set(j, list.get(j) + list.get(j + 1));
+      }
+    }
+    return list;
+  }
+
+  public static List<List<Integer>> getListRow(int rowIndex) {
+    List<List<Integer>> allList = new ArrayList<>();
+    ArrayList<Integer> list = new ArrayList<>();
+
+    for (int i = 0; i < rowIndex; i++) {
+      list.add(0, 1);
+      for (int j = 1; j < list.size() - 1; j++) {
+        list.set(j, list.get(j) + list.get(j + 1));
+      }
+      allList.add(new ArrayList<>(list));
+    }
+    return allList;
+  }
+
+  public int maxProfit(int[] prices) {
+    int ans = 0;
+    if (prices.length == 0) {
+      return ans;
+    }
+
+    int max = prices[0];
+    for (int i = 1; i < prices.length; i++) {
+      if (prices[i] > max) {
+        if (ans < (prices[i] - max)) {
+          ans = prices[i] - max;
+        }
+      } else {
+        max = prices[i];
+      }
+    }
+    return ans;
+  }
+
+  public static boolean isPalindrome(String s) {
+    String str = s.replaceAll("[\\W_?.,]", "").toLowerCase();
+    StringBuilder sb = new StringBuilder(str);
+    String res = String.valueOf(sb.reverse()).toLowerCase();
+    return res.equals(str);
+  }
+
+  public int singleNumber(int[] nums) {
+    int result = 0;
+    for (int i = 0; i < nums.length; i++) {
+      result ^= nums[i];
+    }
+    return result;
+  }
+
+  public static String convertToTitle(int n) {
+    return n == 0 ? ""
+            : convertToTitle(--n / 26) + (char)('A' + (n % 26));
+  }
+
+  public int majorityElement(int[] num) {
+    Arrays.sort(num);
+    int major=num[0], count = 1;
+    for(int i=1; i<num.length;i++){
+      if(count==0){
+        count++;
+        major=num[i];
+      }else if(major==num[i]){
+        count++;
+      }else count--;
+
+    }
+    return major;
   }
 }
 

@@ -1,5 +1,7 @@
 package com.bootcamp;
 
+import com.bootcamp.someAlgortihms.LeetCode;
+
 public class Main {
 
   public static void main(String[] args) {
